@@ -40,9 +40,9 @@ jobs:
               aws configure set aws_access_key_id default_access_key
               aws configure set aws_secret_access_key default_secret_key
               aws configure set default.region eu-central-1
-              aws configure set novu.region eu-central-1
+              aws configure set profile.novu.region eu-central-1
               aws configure set default.output json
-              aws configure set novu.output json
+              aws configure set profile.novu.output json
               
         - name: List configurations
           run: aws configure list
