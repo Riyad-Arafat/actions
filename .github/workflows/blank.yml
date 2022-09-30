@@ -29,8 +29,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - uses: aws-actions/setup-sam@v2
-      - name: Setup AWS SAM CLI
-        run: aws --profile -h
+      - name: Deploy
+      - uses: ItsKarma/aws-cli@v1.70.0
+        with:
+          args: --profile novu s3 sync build/ s3://getnovu.com
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
       
