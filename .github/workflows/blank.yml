@@ -1,13 +1,16 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Frontend Deployment_Blank
+name: Merge releases
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+   pull_request:
+      types:
+        - closed
+      branches:
+      - 'releases/**'
+    
 jobs:
   Build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
