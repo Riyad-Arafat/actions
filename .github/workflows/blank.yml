@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Frontend Deployment
+name: Frontend Deployment_Blank
 on:
   push:
     branches: [ "main" ]
@@ -10,11 +10,11 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      #- uses: actions/checkout@v3
       - name: yarn install
-        run: |
-          cd frontend
-          yarn install
+      #  run: |
+       #   cd frontend
+        #  yarn install
           
       - name: yarn build
         run: |
