@@ -10,8 +10,8 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      #- uses: actions/checkout@v3
-      - name: yarn install
+      - uses: actions/checkout@v3
+      #- name: yarn install
       #  run: |
        #   cd frontend
         #  yarn install
