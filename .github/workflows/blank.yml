@@ -42,5 +42,5 @@ jobs:
           
         - name: Deploy
           run: |
-            cd frontend
+            ls
             yarn deploy      
