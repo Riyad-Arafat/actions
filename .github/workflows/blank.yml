@@ -20,28 +20,26 @@ jobs:
         run: |
           cd frontend
           mkdir build
-        # yarn build       
+        # yarn build      
         
-  Deploy:
-      needs: Build
-      runs-on: ubuntu-latest
-      steps:
-        - name: install-aws-cli-action
-          uses: unfor19/install-aws-cli-action@v1.0.3
-        - name: AWS configure
-          run: |
-            aws configure set aws_access_key_id default_access_key
-            aws configure set aws_secret_access_key default_secret_key
-            aws configure set default.region eu-central-1
-            aws configure set profile.novu.region eu-central-1
-            aws configure set default.output json
-            aws configure set profile.novu.output json
+      - name: install-aws-cli-action
+        uses: unfor19/install-aws-cli-action@v1.0.3
+        
+      - name: AWS configure
+        run: |
+          aws configure set aws_access_key_id default_access_key
+          aws configure set aws_secret_access_key default_secret_key
+          aws configure set default.region eu-central-1
+          aws configure set profile.novu.region eu-central-1
+          aws configure set default.output json
+          aws configure set profile.novu.output json
               
-        - name: List configurations
-          run: aws configure list
-          
-        - uses: actions/checkout@v3
-        - name: Deploy
-          run: |
-            cd frontend
-            yarn deploy      
+      - name: List configurations
+        run: aws configure list
+
+      - name: Deploy
+        run: |
+          cd frontend
+          yarn deploy      
+        
+        
