@@ -40,7 +40,8 @@ jobs:
         - name: List configurations
           run: aws configure list
           
+        - uses: actions/checkout@v3
         - name: Deploy
           run: |
-            ls
+            cd frontend
             yarn deploy      
