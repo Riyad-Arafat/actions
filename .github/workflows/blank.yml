@@ -26,8 +26,16 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: yarn install
+        run: |
+          cd frontend
+          yarn install
+          
+      - name: yarn build
+        run: |
+          cd frontend
+          yarn build
+          
         
   Deploy:
       needs: Build
@@ -37,12 +45,12 @@ jobs:
           uses: unfor19/install-aws-cli-action@v1.0.3
         - name: AWS configure
           run: |
-              aws configure set aws_access_key_id default_access_key
-              aws configure set aws_secret_access_key default_secret_key
-              aws configure set default.region eu-central-1
-              aws configure set profile.novu.region eu-central-1
-              aws configure set default.output json
-              aws configure set profile.novu.output json
+            aws configure set aws_access_key_id default_access_key
+            aws configure set aws_secret_access_key default_secret_key
+            aws configure set default.region eu-central-1
+            aws configure set profile.novu.region eu-central-1
+            aws configure set default.output json
+            aws configure set profile.novu.output json
               
         - name: List configurations
           run: aws configure list
