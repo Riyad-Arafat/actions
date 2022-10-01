@@ -2,10 +2,11 @@
 
 name: Frontend Deployment
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    types:
+      - opened
+    branches:
+      - 'FE/**'
 jobs:
   Build:
     runs-on: ubuntu-latest
