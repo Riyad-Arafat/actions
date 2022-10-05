@@ -1,12 +1,7 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Merge releases
+name: Build and Deploy on push to master
 on:
-   pull_request:
-      types:
-        - closed
-      branches:
-      - 'releases/**'
+   push:
+      branches: ["main"]
     
 jobs:
   Build:
@@ -14,17 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      #- name: yarn install
-      #  run: |
-       #   cd frontend
-        #  yarn install
-          
-      - name: yarn build
-        run: |
-          cd frontend
-          mkdir build
-        # yarn build      
-        
       - name: install-aws-cli-action
         uses: unfor19/install-aws-cli-action@v1.0.3
         
@@ -34,11 +18,19 @@ jobs:
           aws configure set aws_secret_access_key default_secret_key
           aws configure set default.region eu-central-1
           aws configure set profile.novu.region eu-central-1
-          aws configure set default.output json
-          aws configure set profile.novu.output json
               
       - name: List configurations
         run: aws configure list
+        
+      - name: yarn install
+        run: |
+          cd frontend
+          yarn install
+          
+      - name: yarn build
+        run: |
+          cd frontend
+          yarn build     
 
       - name: Deploy
         run: |
